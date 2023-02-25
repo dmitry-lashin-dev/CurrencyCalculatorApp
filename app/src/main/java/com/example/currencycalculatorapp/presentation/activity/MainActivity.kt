@@ -16,8 +16,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navHostFragment.navController.apply {
-            setGraph(R.navigation.nav_graph)
-        }
+        navHostFragment.navController.apply { setGraph(R.navigation.nav_graph) }
     }
 }

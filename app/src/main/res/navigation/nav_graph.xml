@@ -10,9 +10,6 @@
         android:name="com.example.currencycalculatorapp.presentation.fragment.CurrencyCalculatorFragment"
         tools:layout="@layout/fragment_currency">
 
-        <action
-            android:id="@+id/action_calculatorFragment_to_exchangeHistoryFragment"
-            app:destination="@id/exchangeHistoryFragment" />
     </fragment>
 
     <fragment
