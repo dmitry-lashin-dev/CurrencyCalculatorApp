@@ -2,18 +2,21 @@ package com.example.currencycalculatorapp.domain
 
 import com.example.currencycalculatorapp.data.source.CurrenciesRatesDataSource
 import com.example.currencycalculatorapp.domain.base.BaseUseCase
+import com.example.currencycalculatorapp.domain.models.dto.CurrencyDataDto
+import com.example.currencycalculatorapp.domain.models.mapper.NetworkToUIMapper
+import com.example.currencycalculatorapp.domain.models.presentation.CurrencyDataModel
 import com.example.currencycalculatorapp.utils.DateUtil
 import com.example.currencycalculatorapp.utils.DateUtil.CURRENCY_REQUEST_DATE_FORMAT
 import java.util.*
 
 class GetAllRatesUseCase(
     private val source: CurrenciesRatesDataSource = CurrenciesRatesDataSource()
-) : BaseUseCase<Any?>() {
+) : BaseUseCase<CurrencyDataModel>() {
 
     private val HARD_CODE_DATE = "20230225"
     var date: String? = null
 
-    override suspend fun executeOnBackground(): Any? {
+    override suspend fun executeOnBackground(): CurrencyDataModel {
         val finalDate: String = if (date.isNullOrEmpty()) {
             val currentDate = System.currentTimeMillis()
             val date = DateUtil.format(
@@ -29,7 +32,8 @@ class GetAllRatesUseCase(
         if (!result.isSuccessful) {
             throw IllegalStateException(result.errorBody()?.string() ?: "Something went wrong")
         } else {
-            return result.body()
+            val data = result.body() ?: emptyList()
+            return NetworkToUIMapper.map(data)
         }
     }
 }

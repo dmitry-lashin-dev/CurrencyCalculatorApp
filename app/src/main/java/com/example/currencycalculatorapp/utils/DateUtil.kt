@@ -23,7 +23,7 @@ object DateUtil {
     const val HOURS_MINUTES_SECONDS_FORMAT = "HH:mm:ss"
     const val MONTH_DAY_HOURS_MINUTES_FORMAT = "MM|dd,HH:mm"
 
-    const val CURRENCY_REQUEST_DATE_FORMAT = "yyyymmdd"
+    const val CURRENCY_REQUEST_DATE_FORMAT = "yyyyMMdd"
 
     /**
      * Formats a timestamp to string date.

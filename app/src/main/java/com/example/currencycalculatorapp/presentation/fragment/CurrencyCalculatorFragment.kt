@@ -18,4 +18,10 @@ class CurrencyCalculatorFragment : BaseFragment<FragmentCurrencyBinding>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getAllRates()
     }
+
+    private fun setupListeners() {
+        with(binding) {
+
+        }
+    }
 }

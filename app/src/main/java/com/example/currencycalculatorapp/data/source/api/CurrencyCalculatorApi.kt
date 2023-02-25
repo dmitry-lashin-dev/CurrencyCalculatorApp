@@ -1,6 +1,7 @@
 package com.example.currencycalculatorapp.data.source.api
 
 import com.example.currencycalculatorapp.data.source.apiClient
+import com.example.currencycalculatorapp.domain.models.dto.CurrencyDataDto
 import com.example.currencycalculatorapp.domain.models.dto.CurrencyRateDto
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -35,5 +36,5 @@ interface CurrencyCalculatorApi {
     suspend fun getAllRatesByDate(
         @Query("date") date: String,
         @Query("json") type: String
-    ) : Response<Any>
+    ) : Response<List<CurrencyDataDto>>
 }
