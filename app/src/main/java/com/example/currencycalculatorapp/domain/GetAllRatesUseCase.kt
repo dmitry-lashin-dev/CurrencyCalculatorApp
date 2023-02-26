@@ -1,8 +1,7 @@
 package com.example.currencycalculatorapp.domain
 
-import com.example.currencycalculatorapp.data.source.CurrenciesRatesDataSource
+import com.example.currencycalculatorapp.data.source.remote.CurrenciesRatesDataSource
 import com.example.currencycalculatorapp.domain.base.BaseUseCase
-import com.example.currencycalculatorapp.domain.models.dto.CurrencyDataDto
 import com.example.currencycalculatorapp.domain.models.mapper.NetworkToUIMapper
 import com.example.currencycalculatorapp.domain.models.presentation.CurrencyDataModel
 import com.example.currencycalculatorapp.utils.DateUtil

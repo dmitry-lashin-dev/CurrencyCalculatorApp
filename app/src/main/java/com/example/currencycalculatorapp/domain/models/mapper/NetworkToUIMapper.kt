@@ -1,6 +1,6 @@
 package com.example.currencycalculatorapp.domain.models.mapper
 
-import com.example.currencycalculatorapp.domain.models.dto.CurrencyDataDto
+import com.example.currencycalculatorapp.data.models.dto.CurrencyDataDto
 import com.example.currencycalculatorapp.domain.models.presentation.CurrencyDataModel
 import com.example.currencycalculatorapp.domain.models.presentation.CurrencyDataUi
 

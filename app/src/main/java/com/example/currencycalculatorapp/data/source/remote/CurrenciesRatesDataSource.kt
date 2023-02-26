@@ -1,7 +1,7 @@
-package com.example.currencycalculatorapp.data.source
+package com.example.currencycalculatorapp.data.source.remote
 
 import com.example.currencycalculatorapp.data.source.api.CurrencyCalculatorApi
-import com.example.currencycalculatorapp.domain.models.dto.CurrencyDataDto
+import com.example.currencycalculatorapp.data.models.dto.CurrencyDataDto
 import retrofit2.Response
 
 class CurrenciesRatesDataSource {

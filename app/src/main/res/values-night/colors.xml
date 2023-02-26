@@ -7,4 +7,5 @@
     <color name="secondary_color">#A6A6B0</color>
     <color name="disable_button_color">#2F2F39</color>
     <color name="enable_button_color">#FFCA48</color>
+    <color name="bottom_dialog_line_color">#969FA8</color>
 </resources>

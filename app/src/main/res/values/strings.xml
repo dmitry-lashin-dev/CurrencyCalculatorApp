@@ -8,11 +8,12 @@
     <string name="history">History</string>
     <string name="please_choose_the_date">Please, choose the date</string>
     <string name="date">Date</string>
-    <string name="all_period">All Period</string>
     <string name="original_currency">Original Currency</string>
     <string name="currency">Currency</string>
     <string name="target_currency">Target Currency</string>
     <string name="amount">Amount</string>
     <string name="you_will_receive">You will receive</string>
     <string name="exchange">Exchange</string>
+    <string name="select_date">Select date</string>
+    <string name="no_history_yet">No History Yet</string>
 </resources>

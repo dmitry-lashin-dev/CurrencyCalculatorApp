@@ -32,6 +32,7 @@
             android:paddingHorizontal="@dimen/padding_16">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dateContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8"
@@ -60,7 +61,7 @@
                     android:drawablePadding="@dimen/padding_8"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center_vertical"
-                    android:text="@string/all_period"
+                    android:text="@string/select_date"
                     android:textColor="@color/black_white"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,6 +73,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/originalCurrencyContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8"
@@ -93,25 +95,29 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/originalCurrencyValueTv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_10"
                     android:drawableEnd="@drawable/ic_arrow_history"
                     android:drawablePadding="@dimen/padding_8"
                     android:fontFamily="@font/roboto_medium"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|end"
+                    android:singleLine="true"
                     android:text="@string/currency"
                     android:textColor="@color/black_white"
-                    android:textSize="@dimen/sp_14"
+                    app:autoSizeMaxTextSize="@dimen/sp_14"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="@dimen/sp_2"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/originCurrencyTitleTv"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/targetCurrencyContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8"
@@ -133,26 +139,29 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/targetCurrencyValueTv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_10"
                     android:drawableEnd="@drawable/ic_arrow_history"
                     android:drawablePadding="@dimen/padding_8"
                     android:fontFamily="@font/roboto_medium"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|end"
+                    android:singleLine="true"
                     android:text="@string/currency"
                     android:textColor="@color/black_white"
-                    android:textSize="@dimen/sp_14"
+                    app:autoSizeMaxTextSize="@dimen/sp_14"
+                    app:autoSizeMinTextSize="@dimen/sp_10"
+                    app:autoSizeStepGranularity="@dimen/sp_2"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/targetCurrencyTitleTv"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/currency_value_tc_til"
+                android:id="@+id/currencyTil"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_marginTop="@dimen/margin_8"
@@ -165,7 +174,7 @@
                 app:hintTextColor="@color/secondary_color">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/currency_input_filed_tc_tiet"
+                    android:id="@+id/currencyAmountTiet"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
