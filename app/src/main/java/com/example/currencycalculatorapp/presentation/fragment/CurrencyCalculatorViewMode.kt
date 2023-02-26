@@ -2,6 +2,7 @@ package com.example.currencycalculatorapp.presentation.fragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
+import com.example.currencycalculatorapp.common.SingleLiveEvent
 import com.example.currencycalculatorapp.common.toPrecision
 import com.example.currencycalculatorapp.domain.GetAllRatesUseCase
 import com.example.currencycalculatorapp.domain.SaveExchangeHistoryUseCase
@@ -98,7 +99,7 @@ class CurrencyCalculatorViewMode(
         }
         .flowOn(Dispatchers.IO)
         .asLiveData()
-    val historyNavigationLd = MutableLiveData<Unit>()
+    val historyNavigationLd = SingleLiveEvent<Unit>()
 
     init {
         getAllRates()
@@ -174,6 +175,6 @@ class CurrencyCalculatorViewMode(
     }
 
     fun processClickHistory() {
-        historyNavigationLd.postValue(Unit)
+        historyNavigationLd.callSafe()
     }
 }

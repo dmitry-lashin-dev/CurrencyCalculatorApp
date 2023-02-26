@@ -1,6 +1,7 @@
 package com.example.currencycalculatorapp.presentation.fragment
 
 import androidx.lifecycle.asLiveData
+import com.example.currencycalculatorapp.common.SingleLiveEvent
 import com.example.currencycalculatorapp.data.models.dto.ExchangeHistoryDto
 import com.example.currencycalculatorapp.domain.GetExchangeHistoryUseCase
 import com.example.currencycalculatorapp.presentation.base.BaseViewModel
@@ -12,6 +13,7 @@ class ExchangeHistoryViewModel(
 ) : BaseViewModel() {
 
     private val historyFlow = MutableStateFlow<List<ExchangeHistoryDto>>(emptyList())
+    val backActionLd = SingleLiveEvent<Unit>()
 
     val historyLd = historyFlow
         .map {
@@ -25,6 +27,10 @@ class ExchangeHistoryViewModel(
                 historyFlow.tryEmit(it)
             }
         }
+    }
+
+    fun processBackClick() {
+        backActionLd.callSafe()
     }
 
 }

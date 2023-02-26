@@ -27,16 +27,18 @@ class ExchangeHistoryFragment : BaseFragment<FragmentExchangeHistoryBinding>() {
         super.onViewCreated(view, savedInstanceState)
         setupAdapterAndRecycler()
         viewModel.loadHistory()
-        binding.topToolbar.setNavigationOnClickListener {
-            findNavController().navigate(ExchangeHistoryFragmentDirections.back())
-        }
+        binding.topToolbar.setNavigationOnClickListener { viewModel.processBackClick()}
+        observeViewModelFields()
+    }
+
+    private fun observeViewModelFields() {
         observeData(viewModel.historyLd) {
             binding.historyRv.isVisible = !it.second
             binding.emptyHistory.isVisible = it.second
             adapter?.submitList(it.first)
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(ExchangeHistoryFragmentDirections.back())
+        observeData(viewModel.backActionLd) {
+            findNavController().popBackStack()
         }
     }
 

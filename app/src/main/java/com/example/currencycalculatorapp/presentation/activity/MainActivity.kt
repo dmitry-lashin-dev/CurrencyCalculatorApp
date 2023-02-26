@@ -1,15 +1,10 @@
 package com.example.currencycalculatorapp.presentation.activity
 
-import android.app.Dialog
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.example.currencycalculator.R
 import com.example.currencycalculator.databinding.ActivityMainBinding
-import com.example.currencycalculatorapp.common.observeData
 import com.example.currencycalculatorapp.presentation.base.BaseActivity
-import com.example.currencycalculatorapp.presentation.base.BaseViewModel
-import com.example.currencycalculatorapp.presentation.dialog.DialogFactory
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
