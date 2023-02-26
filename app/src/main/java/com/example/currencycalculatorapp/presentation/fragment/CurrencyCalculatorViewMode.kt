@@ -52,6 +52,7 @@ class CurrencyCalculatorViewMode(
         .combine(ratesModelFlow.filterNotNull()) { isOriginal, model ->
             isOriginal to model.currenciesNamesList
         }
+        .distinctUntilChanged()
         .asLiveData()
     val selectedOriginalLd = selectedOriginalCurrencyFlow.filterNotNull()
         .map {
