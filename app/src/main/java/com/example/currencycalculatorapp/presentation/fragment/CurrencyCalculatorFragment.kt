@@ -73,13 +73,13 @@ class CurrencyCalculatorFragment : BaseFragment<FragmentCurrencyBinding>() {
     }
 
     private fun observeViewModelFields() {
-        observeData(viewModel.calendarDataLd) {
+        observeData(viewModel.calendarDataEvent) {
             showDatePicker(it)
         }
         observeData(viewModel.selectedDateLd) {
             binding.dateValueTv.text = it
         }
-        observeData(viewModel.showSelectCurrencyDialogLd) { data ->
+        observeData(viewModel.showSelectCurrencyDialogEvent) { data ->
             val dialog = SelectCurrencyDialog.getInstance(data.second)
             dialog.selectCurrencyListener = {
                 viewModel.processSelectedCurrency(data.first, it)

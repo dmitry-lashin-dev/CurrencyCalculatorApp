@@ -14,7 +14,6 @@ import com.example.currencycalculatorapp.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -25,7 +24,7 @@ class CurrencyCalculatorViewMode(
 ) : BaseViewModel() {
 
     companion object {
-        private const val DEFAULT_RATE = 1.0
+        private const val DEFAULT_RATE = 0.0
         private const val DEBOUNCE_TIME = 300L
         private const val PRECISION = 2
     }
@@ -46,15 +45,9 @@ class CurrencyCalculatorViewMode(
     private val selectedTargetCurrencyFlow = MutableStateFlow<CurrencyDataUi?>(null)
     private val amountFlow = MutableStateFlow<String?>(null)
 
-    val calendarDataLd = calendarDataFlow.filterNotNull().asLiveData()
+    val calendarDataEvent = SingleLiveEvent<CalendarDataUi>()
     val selectedDateLd = selectedDateFlow.filterNotNull().asLiveData()
-    val showSelectCurrencyDialogLd = showSelectCurrencyActionFlow
-        .filterNotNull()
-        .combine(ratesModelFlow.filterNotNull()) { isOriginal, model ->
-            isOriginal to model.currenciesNamesList
-        }
-        .distinctUntilChanged()
-        .asLiveData()
+    val showSelectCurrencyDialogEvent = SingleLiveEvent<Pair<Boolean, List<CurrencyDataUi>>>()
     val selectedOriginalLd = selectedOriginalCurrencyFlow.filterNotNull()
         .map {
             it.name
@@ -103,6 +96,25 @@ class CurrencyCalculatorViewMode(
 
     init {
         getAllRates()
+        viewModelScope.launch(Dispatchers.IO) {
+            calendarDataFlow
+                .filterNotNull()
+                .collectLatest {
+                    calendarDataEvent.postValue(it)
+                }
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            combine(
+                showSelectCurrencyActionFlow.filterNotNull(),
+                ratesModelFlow.filterNotNull()
+            ) { isOriginal, model ->
+                isOriginal to model.currenciesNamesList
+            }
+                .distinctUntilChanged()
+                .collectLatest { pair ->
+                    showSelectCurrencyDialogEvent.postValue(pair)
+                }
+        }
     }
 
     private fun getAllRates(date: String? = null) {
